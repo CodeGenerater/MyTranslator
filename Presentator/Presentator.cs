@@ -63,6 +63,10 @@ namespace CodeGenerater.Translation.Plugins
 
 				return null;
 			};
+
+			var MainWindow = new MainWindow();
+			MainWindow.DataContext = this;
+			MainWindow.Show();
 		}
 		#endregion
 	}

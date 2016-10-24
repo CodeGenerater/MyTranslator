@@ -13,10 +13,10 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<GroupBox Grid.Row="0" Header="Original Text">
-			<TextBox Style="{StaticResource StringBoxStyle}"/>
+			<TextBox Style="{StaticResource StringBoxStyle}" Text="{Binding Path=OriginalText}"/>
 		</GroupBox>
 		<GroupBox Grid.Row="1" Header="Translated Text">
-			<TextBox Style="{StaticResource StringBoxStyle}"/>
+			<TextBox Style="{StaticResource StringBoxStyle}" Text="{Binding Path=TranslatedText}"/>
 		</GroupBox>
 	</Grid>
 	
