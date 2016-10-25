@@ -36,20 +36,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IStringData.cs" />
+    <Compile Include="Class\MyTranslator.cs" />
+    <Compile Include="Pipeline\Pipe.cs" />
+    <Compile Include="Pipeline\PipeBase.cs" />
+    <Compile Include="Pipeline\Pipeline.cs" />
+    <Compile Include="Pipeline\QueueReceiver.cs" />
+    <Compile Include="Pipeline\Receiver.cs" />
+    <Compile Include="Pipeline\RequireSkipException.cs" />
+    <Compile Include="Pipeline\SingleReceiver.cs" />
     <Compile Include="Plugin\Plugin.cs" />
     <Compile Include="Plugin\ReceiverType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Plugin\SerializationHelper.cs" />
-    <Compile Include="Data\StringData.cs" />
+    <Compile Include="Class\StringData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\PipelineExample\System.Threading\System.Threading.csproj">
-      <Project>{b1c16ff6-7d05-45d6-a94e-70973caaa4b7}</Project>
-      <Name>System.Threading</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

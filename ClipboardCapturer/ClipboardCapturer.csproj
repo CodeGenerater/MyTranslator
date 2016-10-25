@@ -41,10 +41,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PipelineExample\System.Threading\System.Threading.csproj">
-      <Project>{B1C16FF6-7D05-45D6-A94E-70973CAAA4B7}</Project>
-      <Name>System.Threading</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyTranslator\MyTranslator.csproj">
       <Project>{2829d764-1cc3-438d-8dbb-c146db49cf71}</Project>
       <Name>MyTranslator</Name>
