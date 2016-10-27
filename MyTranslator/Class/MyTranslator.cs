@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CodeGenerater.Translation
 {
@@ -13,41 +12,60 @@ namespace CodeGenerater.Translation
 	public class MyTranslator : ISerializable
 	{
 		#region ISerializable
-		public virtual void GetObjectData(SerializationInfo Info, StreamingContext Context)
-		{
-			SerializationHelper.Serialize(this, Info);
-		}
-
-		MyTranslator(SerializationInfo Info, StreamingContext Context)
+		protected MyTranslator(SerializationInfo Info, StreamingContext Context)
 		{
 			SerializationHelper.Deserialize(this, Info);
+		}
+
+		public void GetObjectData(SerializationInfo Info, StreamingContext Context)
+		{
+			SerializationHelper.Serialize(this, Info);
 		}
 		#endregion
 
 		#region Constructor
+		MyTranslator()
+		{
+			AssemblyCollection = new ObservableCollection<LoadedAssembly>();
+			PluginCollection = new ObservableCollection<Plugin>();
+		}
 		#endregion
 
 		#region Field
 		[SerializationTarget]
-		ObservableCollection<Type> PluginCollection;
-
-		[SerializationTarget]
-		ObservableCollection<Plugin> UsingPluginCollection;
+		ObservableCollection<LoadedAssembly> AssemblyCollection;
 		#endregion
 
 		#region Property
+		public IEnumerable<LoadedAssembly> Assemblys
+		{
+			get
+			{
+				return AssemblyCollection;
+			}
+		}
 
+		public ObservableCollection<Plugin> PluginCollection
+		{
+			private set;
+			get;
+		}
 		#endregion
 
 		#region Method
-		#endregion
-
-		#region Helper
-		IEnumerable<Type> GetPluginTypes(Assembly A)
+		public void LoadAssembly(string Path)
 		{
-			return from t in A.DefinedTypes
-				   where t.IsInherite(typeof(Plugin))
-				   select t;
+			AssemblyCollection.Add(new LoadedAssembly(Path));
+		}
+
+		public void Save()
+		{
+			DataIntergration.Save(this);
+		}
+
+		public static MyTranslator Load()
+		{
+			return (MyTranslator)DataIntergration.Load();
 		}
 		#endregion
 	}

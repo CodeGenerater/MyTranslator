@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CodeGenerater.Translation
 {
-	public class StringData : IStringData
+	public class StringData
 	{
 		#region Constructor
 		public StringData(string Original)

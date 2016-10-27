@@ -23,24 +23,15 @@ namespace CodeGenerater.Translation.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("save.csharp")]
-        public string SerializedName {
-            get {
-                return ((string)(this["SerializedName"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SerializedPath {
+        public string IntergratedData {
             get {
-                return ((string)(this["SerializedPath"]));
+                return ((string)(this["IntergratedData"]));
             }
             set {
-                this["SerializedPath"] = value;
+                this["IntergratedData"] = value;
             }
         }
         
@@ -53,18 +44,6 @@ namespace CodeGenerater.Translation.Properties {
             }
             set {
                 this["Setting"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string @__Xml__ {
-            get {
-                return ((string)(this["__Xml__"]));
-            }
-            set {
-                this["__Xml__"] = value;
             }
         }
     }
