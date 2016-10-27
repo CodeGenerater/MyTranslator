@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeGenerater.Translation.UI.WPF"
+		xmlns:base="clr-namespace:CodeGenerater.Translation;assembly=MyTranslator"
         mc:Ignorable="d"
         Title="MyTranslator" Height="350" Width="525">
+
+	<Window.Resources>
+		<HierarchicalDataTemplate DataType="{x:Type base:LoadedAssembly}" ItemsSource="{Binding Path=Plugins}">
+			<TextBlock Text="{Binding Path=Assembly.FullName}"/>
+		</HierarchicalDataTemplate>
+		<DataTemplate DataType="{x:Type base:Plugin}">
+			<TextBlock Text="{Binding}"/>
+		</DataTemplate>
+	</Window.Resources>
+	
     <Grid>
-        
-    </Grid>
+		<TreeView ItemsSource="{Binding Path=MyTranslator, Source={StaticResource MainViewModel}}"/>
+	</Grid>
+	
 </Window>

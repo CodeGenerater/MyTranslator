@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace CodeGenerater.Translation
@@ -56,6 +57,14 @@ namespace CodeGenerater.Translation
 					_Assembly = Assembly.Load(Bytes);
 
 				return _Assembly;
+			}
+		}
+
+		public IEnumerable<Type> Plugins
+		{
+			get
+			{
+				return Assembly.GetPlugins();
 			}
 		}
 		#endregion

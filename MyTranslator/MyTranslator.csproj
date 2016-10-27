@@ -58,7 +58,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="XmlSerializableDictionary.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

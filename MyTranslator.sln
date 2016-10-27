@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{A07C5315-1E24-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerater.Translation.UI.WPF", "CodeGenerater.Translation.UI.WPF\CodeGenerater.Translation.UI.WPF.csproj", "{6F6E7A52-C3E5-4113-A81C-E9BC953C579D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeViewTest", "TreeViewTest\TreeViewTest.csproj", "{AF38F3BB-5C3F-4AD2-A786-2E0196E1CFF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{6F6E7A52-C3E5-4113-A81C-E9BC953C579D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F6E7A52-C3E5-4113-A81C-E9BC953C579D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F6E7A52-C3E5-4113-A81C-E9BC953C579D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF38F3BB-5C3F-4AD2-A786-2E0196E1CFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF38F3BB-5C3F-4AD2-A786-2E0196E1CFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF38F3BB-5C3F-4AD2-A786-2E0196E1CFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF38F3BB-5C3F-4AD2-A786-2E0196E1CFF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{9F57F568-5264-43A8-A373-CF3A58A01DFB} = {81ED3951-078D-405E-9F6E-FCBB18BFA402}
 		{7E024399-9CB4-4B62-A1F3-4830A13742C5} = {B0DBCA2A-D6E5-4E20-8A6C-E229F03263FE}
 		{6F6E7A52-C3E5-4113-A81C-E9BC953C579D} = {A07C5315-1E24-4629-9DF8-7A8945E2C163}
+		{AF38F3BB-5C3F-4AD2-A786-2E0196E1CFF9} = {B0DBCA2A-D6E5-4E20-8A6C-E229F03263FE}
 	EndGlobalSection
 EndGlobal

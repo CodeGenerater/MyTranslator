@@ -147,6 +147,13 @@ namespace CodeGenerater.Translation
 		}
 		#endregion
 
+		#region Method
+		public override string ToString()
+		{
+			return string.Format("{0} ({1}) by {2}", Name, Version, Creator);
+		}
+		#endregion
+
 		#region Helper
 		protected virtual void Initialize() { }
 		#endregion

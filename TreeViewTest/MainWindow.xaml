@@ -1,0 +1,23 @@
+﻿<Window x:Class="TreeViewTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeViewTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+
+	<Grid>
+		<TreeView Name="TreeView_Test" ItemsSource="{Binding}">
+			<TreeView.Resources>
+				<HierarchicalDataTemplate DataType="{x:Type local:TestClass_1}" ItemsSource="{Binding Path=Sons}">
+					<TextBlock Text="{Binding Path=Value}"/>
+				</HierarchicalDataTemplate>
+				<DataTemplate DataType="{x:Type local:TestClass_2}">
+					<TextBlock Text="{Binding Path=Value}"/>
+				</DataTemplate>
+			</TreeView.Resources>
+		</TreeView>
+	</Grid>
+	
+</Window>
