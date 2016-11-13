@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Threading;
 using System.Runtime.Serialization;
+using System;
 
 namespace CodeGenerater.Translation.Plugins
 {
@@ -14,7 +15,7 @@ namespace CodeGenerater.Translation.Plugins
 		#endregion
 
 		#region Constructor
-		public ClipboardCapturer() : base(ReceiverType.None)
+		public ClipboardCapturer()
 		{
 			
 		}
@@ -61,21 +62,16 @@ namespace CodeGenerater.Translation.Plugins
 		}
 		#endregion
 
-		#region Helper
-		protected override void Initialize()
+		#region Method
+		public override object Process(object Data)
 		{
-			Receiver = new NullReceiver();
+			string Capture = Clipboard.GetText();
 
-			ProcessFunction = (object @null) =>
-			{
-				string Capture = Clipboard.GetText();
+			if (Captured != Capture)
+				return Captured = Capture;
 
-				if (Captured != Capture)
-					return Captured = Capture;
-
-				Thread.Sleep(Interval);
-				throw new RequireSkipException();
-			};
+			Thread.Sleep(Interval);
+			throw new RequireSkipException();
 		}
 		#endregion
 	}

@@ -89,9 +89,9 @@ namespace CodeGenerater.Translation
 		#endregion
 
 		#region Method
-		public void LoadAssembly(string Path)
+		public void LoadAssembly(LoadedAssembly Assembly)
 		{
-			_AssemblyCollection.Add(new LoadedAssembly(Path));
+			_AssemblyCollection.Add(Assembly);
 		}
 
 		public void Save()
@@ -101,7 +101,12 @@ namespace CodeGenerater.Translation
 
 		public static MyTranslator Load()
 		{
-			return (MyTranslator)DataIntergration.Load();
+			object Deserializaed = DataIntergration.Load();
+
+			if (Deserializaed != null)
+				return Deserializaed as MyTranslator;
+			else
+				return new MyTranslator();
 		}
 		#endregion
 

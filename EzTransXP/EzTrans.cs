@@ -34,25 +34,27 @@ namespace CodeGenerater.Translation.Plugins
 		}
 		#endregion
 
+		#region Method
+		public override object Process(object Data)
+		{
+			StringData StringData = Data as StringData;
+
+			if (StringData == null)
+				throw new ArgumentNullException();
+
+			StringData.Register(Translate(StringData.Current));
+
+			return StringData;
+		}
+		#endregion
+
 		#region Helper
-		protected override void Initialize()
+		public override void Initialize()
 		{
 			CP932 = new EncodingManager(932);
 			CP949 = new EncodingManager(949);
 			Engine = new J2KEngine(Path);
 			Engine.J2K_InitializeEx(CP932.ToBytes(EZTR_INIT_STR), CP932.ToBytes(Path + @"\Dat"));
-
-			ProcessFunction = (object Input) =>
-			{
-				StringData Data = Input as StringData;
-
-				if (Data == null)
-					throw new ArgumentNullException();
-
-				Data.Register(Translate(Data.Current));
-
-				return Data;
-			};
 		}
 
 		string Translate(string Input)

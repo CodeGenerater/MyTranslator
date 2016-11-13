@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace CodeGenerater.Translation
 {
@@ -14,6 +13,8 @@ namespace CodeGenerater.Translation
 					return true;
 				else if (T.BaseType == typeof(object))
 					return false;
+
+				T = T.BaseType;
 			}
 		}
 	}

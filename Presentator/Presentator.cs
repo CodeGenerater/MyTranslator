@@ -44,26 +44,28 @@ namespace CodeGenerater.Translation.Plugins
 		}
 		#endregion
 
-		#region Helper
-		protected override void Initialize()
+		#region Method
+		public override object Process(object Data)
 		{
-			ProcessFunction = (object Input) =>
-			{
-				var Data = Input as StringData;
+			var StringData = Data as StringData;
 
-				string Original = Data.Original;
-				string Current = Data.Current;
+			string Original = StringData.Original;
+			string Current = StringData.Current;
 
-				App.Current.Dispatcher.BeginInvoke(
-					new Action(() =>
-					{
-						OriginalText = Original;
-						TranslatedText = Current;
-					}));
+			App.Current.Dispatcher.BeginInvoke(
+				new Action(() =>
+				{
+					OriginalText = Original;
+					TranslatedText = Current;
+				}));
 
-				return null;
-			};
+			return null;
+		}
+		#endregion
 
+		#region Helper
+		public override void Initialize()
+		{
 			var MainWindow = new MainWindow();
 			MainWindow.DataContext = this;
 			MainWindow.Show();

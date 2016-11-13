@@ -17,6 +17,7 @@ namespace CodeGenerater.Translation
 				Stream = new MemoryStream();
 				(new BinaryFormatter()).Serialize(Stream, Instance);
 				Properties.Settings.Default.IntergratedData = ToBase64(Stream.GetBuffer());
+				Properties.Settings.Default.Save();
 			}
 			finally
 			{
@@ -26,6 +27,9 @@ namespace CodeGenerater.Translation
 
 		public static ISerializable Load()
 		{
+			if (string.IsNullOrEmpty(Properties.Settings.Default.IntergratedData))
+				return null;
+
 			MemoryStream Stream = null;
 
 			try

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace CodeGenerater.Translation
 {
 	[Serializable]
-	public abstract class Plugin : Pipe, ISerializable, INotifyPropertyChanged
+	public abstract class Plugin : SingleCapacityPipe, ISerializable, INotifyPropertyChanged
 	{
 		#region ISerializable
 		protected virtual void Serialize(SerializationInfo Info, StreamingContext Context)
@@ -47,21 +47,12 @@ namespace CodeGenerater.Translation
 		}
 		#endregion
 
-		#region Constructor
-		public Plugin(ReceiverType ReceiverType = ReceiverType.Single)
-		{
-
-		}
-		#endregion
-
 		#region Field
 		string _Name;
 
 		string _Version;
 
 		string _Creator;
-
-		ReceiverType _ReceiverType;
 		#endregion
 		
 		#region Property
@@ -115,36 +106,6 @@ namespace CodeGenerater.Translation
 				return _Creator;
 			}
 		}
-
-		[SerializationTarget]
-		public ReceiverType ReceiverType
-		{
-			private set
-			{
-				if (_ReceiverType != value)
-				{
-					_ReceiverType = value;
-
-					switch (value)
-					{
-						case ReceiverType.Single:
-							Receiver = new SingleReceiver();
-							break;
-						case ReceiverType.Queue:
-							Receiver = new QueueReceiver();
-							break;
-						default:
-							break;
-					}
-
-					Notify("ReceiverType");
-				}
-			}
-			get
-			{
-				return _ReceiverType;
-			}
-		}
 		#endregion
 
 		#region Method
@@ -155,7 +116,7 @@ namespace CodeGenerater.Translation
 		#endregion
 
 		#region Helper
-		protected virtual void Initialize() { }
+		public override void Initialize() { }
 		#endregion
 	}
 }

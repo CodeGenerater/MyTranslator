@@ -5,20 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodeGenerater.Translation.UI.WPF"
 		xmlns:base="clr-namespace:CodeGenerater.Translation;assembly=MyTranslator"
+		xmlns:ref="clr-namespace:System.Reflection;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MyTranslator" Height="350" Width="525">
+        Title="MyTranslator" Height="350" Width="525" AllowDrop="True"
+		DragEnter="Window_DragEnter" Drop="Window_Drop" Closed="Window_Closed">
 
 	<Window.Resources>
 		<HierarchicalDataTemplate DataType="{x:Type base:LoadedAssembly}" ItemsSource="{Binding Path=Plugins}">
 			<TextBlock Text="{Binding Path=Assembly.FullName}"/>
 		</HierarchicalDataTemplate>
-		<DataTemplate DataType="{x:Type base:Plugin}">
-			<TextBlock Text="{Binding}"/>
+		<DataTemplate DataType="{x:Type base:PluginType}">
+			<Button Content="{Binding Name}" Command="" CommandParameter="{Binding}"/>
 		</DataTemplate>
 	</Window.Resources>
 	
-    <Grid>
-		<TreeView ItemsSource="{Binding Path=MyTranslator, Source={StaticResource MainViewModel}}"/>
+    <Grid DataContext="{StaticResource MainViewModel}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<TreeView ItemsSource="{Binding Path=MyTranslator.AssemblyCollection}"/>
+		<ListBox Grid.Column="1" ItemsSource="{Binding Path=MyTranslator.PluginCollection}"/>
 	</Grid>
 	
 </Window>

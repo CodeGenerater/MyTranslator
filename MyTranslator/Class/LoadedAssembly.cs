@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -18,27 +19,35 @@ namespace CodeGenerater.Translation
 		LoadedAssembly(SerializationInfo Info, StreamingContext Context)
 		{
 			SerializationHelper.Deserialize(this, Info);
+			Assembly = Assembly.Load(Bytes);
 		}
 		#endregion
 
 		#region Constructor
 		public LoadedAssembly(string AssemblyPath)
 		{
-			_Assembly = Assembly.LoadFile(AssemblyPath);
+			Assembly = Assembly.LoadFile(AssemblyPath);
 			var Stream = File.Open(AssemblyPath, FileMode.Open);
 
 			if (Stream.Length > int.MaxValue)
 				throw new ArgumentException("Too long to read", "AssemblyPath");
 
-
 			Stream.Position = 0;
 			Bytes = new byte[Stream.Length];
 			Stream.Read(Bytes, 0, (int)Stream.Length);
+		}
+
+		public LoadedAssembly(byte[] AssemblyBytes)
+		{
+			Bytes = AssemblyBytes.ToArray();
+			Assembly = Assembly.Load(Bytes);
 		}
 		#endregion
 
 		#region Field
 		Assembly _Assembly;
+
+		IEnumerable<PluginType> PluginCollection;
 		#endregion
 
 		#region Property
@@ -51,22 +60,44 @@ namespace CodeGenerater.Translation
 
 		public Assembly Assembly
 		{
+			set
+			{
+				_Assembly = value;
+
+				PluginCollection = (from t in Assembly.GetPlugins() select new PluginType(t)).ToArray();
+			}
 			get
 			{
 				if (_Assembly == null)
-					_Assembly = Assembly.Load(Bytes);
+					Assembly = Assembly.Load(Bytes);
 
 				return _Assembly;
 			}
 		}
 
-		public IEnumerable<Type> Plugins
+		public IEnumerable<PluginType> Plugins
 		{
 			get
 			{
-				return Assembly.GetPlugins();
+				return PluginCollection;
 			}
 		}
+		#endregion
+
+		#region Method
+		public static bool IsLoadable(Assembly A)
+		{
+			return (from t in A.DefinedTypes where t.IsInherite(typeof(Plugin)) select t).Count() > 0;
+		}
+
+		public static bool IsLoadable(string AssemblyPath)
+		{
+			try { return IsLoadable(Assembly.LoadFile(AssemblyPath)); }
+			catch (BadImageFormatException) { return false; }
+		}
+		#endregion
+
+		#region Helper
 		#endregion
 	}
 }

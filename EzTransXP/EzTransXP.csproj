@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Binary\Debug\Plugins\</OutputPath>
+    <OutputPath>..\Binary\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Binary\Release\Plugins\</OutputPath>
+    <OutputPath>..\Binary\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Pipeline.NET\Pipeline\Pipeline.csproj">
+      <Project>{f32fed3b-552e-4401-ae0b-9511b5ef9fd1}</Project>
+      <Name>Pipeline</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyTranslator\MyTranslator.csproj">
       <Project>{2829d764-1cc3-438d-8dbb-c146db49cf71}</Project>
       <Name>MyTranslator</Name>
